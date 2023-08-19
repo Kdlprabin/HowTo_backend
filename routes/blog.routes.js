@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/', BlogController.getBlogs);
 router.get('/drafts', BlogController.getDrafts);
-router.post('/admin/', BlogController.createBlog);
+router.post('/', BlogController.createBlog);
 router.get('/:id', BlogController.getBlog);
 
 module.exports = router;
