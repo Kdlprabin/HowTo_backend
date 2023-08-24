@@ -6,6 +6,10 @@ const blogSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    imageLink: {
+        type: String,
+        required: true
+    },
     content: {
         required: true,
         type: Object,

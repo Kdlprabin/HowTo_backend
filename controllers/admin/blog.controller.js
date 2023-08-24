@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 
 const createBlog = async (req, res) => {
 
-    const { title, content, status } = req.body;
+    const { title, content, status, imageLink } = req.body;
 
-    if (!title || !content || !status) {
+    if (!title || !content || !status|| !imageLink) {
         return res.status(400).json({
             success: false,
             message: 'Please enter all fields'
@@ -53,6 +53,7 @@ const createBlog = async (req, res) => {
         const blog = new Blog({
             title,
             content,
+            imageLink,
             status,
             date: new Date(
                 Date.now()
