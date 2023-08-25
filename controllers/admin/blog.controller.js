@@ -5,7 +5,7 @@ const createBlog = async (req, res) => {
 
     const { title, content, status, imageLink } = req.body;
 
-    if (!title || !content || !status|| !imageLink) {
+    if (!title || !content || !status || !imageLink) {
         return res.status(400).json({
             success: false,
             message: 'Please enter all fields'
@@ -202,9 +202,30 @@ const getBlog = async (req, res) => {
     }
 }
 
+const getBlogCount = async (req, res) => {
+    try {
+        const count = await Blog.countDocuments({ status: 'published' });
+        res.status(200).json(count);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+const getDraftCount = async (req, res) => {
+    try {
+        const count = await Blog.countDocuments({ status: 'draft' });
+        res.status(200).json(count);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
+    }
+}
+
+
 module.exports = {
     createBlog,
     getBlogs,
     getDrafts,
-    getBlog
+    getBlog,
+    getBlogCount,
+    getDraftCount
 }
