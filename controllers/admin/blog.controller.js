@@ -169,16 +169,9 @@ const getBlog = async (req, res) => {
 
     try {
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-        if (!decoded) {
-            return res.status(401).json({
-                success: false,
-                message: 'Unauthorized'
-            })
-        }
-
         const blog = await Blog.findById(id);
+
+        console.log({id});
 
         if (!blog) {
             return res.status(404).json({
